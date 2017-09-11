@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Theme>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Take";
+}
+
+
+<head>
+    <title>Создать сообщение</title>
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+</head>
+
+@if (ViewBag.tooLate)
+{
+    <style>
+        #my-div {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            outline: 0;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+    </style>
+    <h3 style="text-align:center; color: red">Срок выбора тем прошел, обратитесь к руководителю!</h3>
+}
+@if (ViewBag.Geted)
+{
+    <div style="text-align: center; font-size: 2vw; color: red; margin-top: 15px">Тема уже взята</div>
+    <div style="text-align:center">У вас уже есть тема, вам хватит! В случае возникновения проблем или ошибки - обратитесь к администратору или своему руководителю.</div>
+}
+else
+{
+    <h2>Список тем</h2>
+    <div id="my-div">
+        <table class="table">
+            <tr>
+                <th>
+                    Тип
+                </th>
+                <th>
+                    Предмет
+                </th>
+                <th>
+                    Тема
+                </th>
+                <th>
+                    Описание
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Взять", "TakeThemeByUser", new { id = item.Id })
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+
+
+        @if (!(ViewBag.listCount <= 5))
+        {
+            <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("TakeList", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+        }
+    </div>
+}

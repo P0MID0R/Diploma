@@ -1,0 +1,76 @@
+﻿@model Diplom.Models.DB.Settings
+
+@{
+    ViewBag.Title = "Настройки";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/Content/jquery-ui.css">
+    <script src="~/scripts/jquery-2.2.3.js"></script>
+    <script src="~/scripts/jquery-1.12.4.js"></script>
+    <script src="~/scripts/jquery-ui-1.12.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#CursTime").datepicker({ dateFormat: 'dd.mm.yy' });
+            $("#CursTimeDL").datepicker({ dateFormat: 'dd.mm.yy' });
+            $("#DiplTime").datepicker({ dateFormat: 'dd.mm.yy' });
+            $("#DiplTimeDL").datepicker({ dateFormat: 'dd.mm.yy' });
+        });
+    </script>
+</head>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login">
+        <h4>Настройки</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="login_field">
+            <div>Взятие курсовой</div>
+                @Html.EditorFor(model => model.CursTime, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.CursTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="login_field">
+            <div>
+                Закрытие курсовой
+            </div>
+                @Html.EditorFor(model => model.CursTimeDL, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.CursTimeDL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="login_field">
+            <div>
+                Взятие диплома
+            </div>
+                @Html.EditorFor(model => model.DiplTime, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.DiplTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    <div class="login_field">
+        <div>
+            Закрытие диплома
+        </div>
+                @Html.EditorFor(model => model.DiplTimeDL, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.DiplTimeDL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="group-btn">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

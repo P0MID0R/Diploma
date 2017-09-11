@@ -1,0 +1,48 @@
+﻿@model Diplom.Models.News
+
+@{
+    ViewBag.Title = Model.Topic;
+}
+
+<head>
+    <title>@ViewBag.Topic</title>
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <script src="~/Scripts/AutoUpdate.js"></script>
+</head>
+<div class="mainBody">
+    <div class="NewsBody">
+        <div class="NewsTopic">
+            @Model.Topic
+            @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+            {
+                <span class="btn-group">
+                    <span class="NewsControl"><a class="btn btn-default" href="@Url.Action("EditNews", new { id = Model.Id })">Изменить</a></span>
+                    <span class="NewsControl"><a class="btn btn-default" href="@Url.Action("RemoveNews", new { id = Model.Id })">Удалить</a></span>
+                </span>
+            }
+        </div>
+
+        <div class="NewsCreated">@Model.Created</div>
+
+        <div class="NewsText">
+            @Model.Text
+            <hr class="half-rule" />
+            <div class="NewsFiles">
+                Файлы:
+                @foreach (var file in ViewBag.Files)
+            {
+                if (file.FileName.Split('.')[1] == "png" || file.FileName.Split('.')[1] == "jpg" || file.FileName.Split('.')[1] == "jpeg" || file.FileName.Split('.')[1] == "bmp")
+                {
+                        <a style="text-decoration: none; color:white" href="@Url.Action("Download", new { FileName = file.FileName, FilePath = file.FilePath })"><span class="glyphicon glyphicon-picture"></span> @file.FileName</a>
+                    }
+                    else
+                    {
+                        <a style="text-decoration: none; color:white" href="@Url.Action("Download", new { FileName = file.FileName, FilePath = file.FilePath })"><span class="glyphicon glyphicon-file"></span> @file.FileName</a>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

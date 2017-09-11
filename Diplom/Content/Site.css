@@ -1,0 +1,575 @@
+﻿body {
+    font-size: 2vh;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.container {
+    max-width: 1300px;
+}
+
+@media screen and (min-width: 2000px) {
+    .container {
+        max-width: 1700px;
+    }
+}
+
+@media screen and (min-width: 3000px) {
+    .container {
+        max-width: 3000px;
+    }
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+.chooseReg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Stud {
+    padding: 2px 15px 2px 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    #Stud:hover {
+        color: rgba(102, 175, 233, 0.79);
+        box-shadow: inset 0px 0px 5px rgba(0,0,0,0.9);
+        user-select: none;
+    }
+
+
+#Teach {
+    padding: 2px 15px 2px 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+    #Teach:hover {
+        color: rgba(102, 175, 233, 0.79);
+        box-shadow: inset 0px 0px 5px rgba(0,0,0,0.9);
+        user-select: none;
+    }
+
+
+.selectList select {
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    background: transparent;
+    height: 34px;
+    padding: 5px;
+    border-radius: 1px;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-appearance: none;
+    width: 268px;
+}
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.TitulnikDoc {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    color: #428bca;
+}
+
+.TitulnikPdf {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    color: #428bca;
+}
+
+
+.ct-series .ct-slice-pie {
+    /* fill of the pie slieces */
+    fill: hsl(202, 93%, 50%);
+    /* give your pie slices some outline or separate them visually by using the background color here */
+    stroke: white;
+    /* outline width */
+    stroke-width: 4px;
+    stroke-linecap: round;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+    }
+
+    body {
+        font-size: 2vh;
+        padding-top: 50px;
+        padding-bottom: 20px;
+    }
+}
+
+
+.navbar-collapse {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.flex_container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.flex_block {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.pie {
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 350px;
+    min-width: 350px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btnStat {
+    padding: 0px;
+    top: 10px;
+    right: -12%;
+    text-align: center;
+    z-index: 998;
+}
+
+.stat {
+    border: 1px solid black;
+    border-radius: 0 0 20px 20px;
+}
+
+.out {
+    color: red;
+}
+
+.addNews {
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1 em;
+    background-color: #e3e3e3;
+    color: rgb(47, 47, 47);
+    margin-bottom: 10px;
+}
+
+    .addNews:hover {
+        color: black;
+        box-shadow: inset 0 1px 1px rgb(0, 0, 0),0 0 10px rgba(173, 175, 177, 0.79);
+    }
+
+    .addNews:active {
+        box-shadow: inset 0 0 0 0.5px #27496d,inset 0 0 5px #193047;
+    }
+
+.news {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 0 0 15px 15px;
+    border-top: none;
+    margin: 0px 0px 10px 0px;
+}
+
+    .news:hover {
+        box-shadow: inset 0 1px 1px rgb(0, 0, 0),0 0 10px rgba(102, 175, 233, 0.79);
+    }
+
+.newsTopic {
+    background-color: #222;
+    text-align: center;
+    font-size: 1.1vw;
+    padding: 5px 0 5px 0;
+    color: #999;
+}
+
+.newsDate {
+    text-align: center;
+    font-size: 0.8vw;
+}
+
+.newsText {
+    padding: 10px;
+    word-break: normal;
+}
+
+
+
+.ProfileData {
+    width: 100%;
+    background-color: #e3e3e3;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0 0 15px 15px;
+    border-color: #d2d2d2;
+    border-width: 5px;
+    box-shadow: 0 1px 0 #cfcfcf;
+}
+
+.NewsBody {
+    margin: 15px;
+    margin-top: 0px;
+}
+
+.NewsTopic {
+    font-size: 2vw;
+}
+
+.NewsCreated {
+    font-size: 0.7vw;
+    padding-left: 10px;
+}
+
+.NewsText {
+    background-color: #3c3c3c;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.NewsFiles {
+    color: #e0e0e0;
+}
+
+.NewsControl {
+    margin-top: 20px;
+}
+
+#addMessage {
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+    #addMessage a:hover {
+        text-decoration: none;
+    }
+
+
+.half-rule {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.00), rgba(225, 224, 224, 1), rgba(0, 0, 0, 0.00));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.00), rgba(225, 224, 224, 1), rgba(0, 0, 0, 0.00));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.00), rgba(225, 224, 224, 1), rgba(0, 0, 0, 0.00));
+}
+
+
+.footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.error_message {
+    position: fixed;
+    bottom: 0;
+    left: 80%;
+    border: 1px solid black;
+    width: 20%;
+    border-radius: 10px 0 0 0;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.login {
+    background-color: #e3e3e3;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0 0 15px 15px;
+    border-color: #d2d2d2;
+    border-width: 5px;
+    box-shadow: 0 1px 0 #cfcfcf;
+}
+
+.login_field {
+    text-align: center;
+}
+
+    .login_field input {
+        display: inline;
+        margin: 10px 0px 10px 0px;
+        max-width: 300px;
+    }
+
+        .login_field input:hover {
+            box-shadow: inset 0 1px 1px rgb(0, 0, 0),0 0 10px rgba(102, 175, 233, 0.79);
+        }
+
+.login_button {
+    text-align: center;
+    margin-top: 10px;
+}
+
+h4 {
+    border: 0 solid #fff;
+    border-bottom-width: 1px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+
+.wrapper {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.error_field {
+    font-size: 0.8vw;
+}
+
+.mailBody {
+    background-color: #e3e3e3;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 0 0 15px 15px;
+    border-color: #d2d2d2;
+    border-width: 5px;
+    box-shadow: 0 1px 0 #cfcfcf;
+}
+
+    .mailBody h3 {
+        text-align: center;
+        padding-bottom: 10px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+.mailUser {
+    font-size: 0.8vw;
+    padding-left: 10px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.mailText {
+    background-color: #3c3c3c;
+    color: #e0e0e0;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    word-break: break-all;
+}
+
+.mailFiles {
+    color: white;
+    text-decoration: none;
+}
+
+.mailCintrol {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.mainBody {
+    background-color: #e3e3e3;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    border-radius: 0 0 15px 15px;
+}
+
+    .mainBody h4 {
+        margin-top: 0px;
+        padding-top: 10px;
+    }
+
+.PM {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+}
+
+.PMR {
+    background-color: rgba(235, 118, 118, 0.32);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.PMBody {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    width: 94%;
+}
+
+
+.PMFUser {
+    font-size: 0.7vw;
+}
+
+.PMTopic {
+}
+
+.PMText {
+    background-color: #2222224d;
+    padding: 5px;
+    border-radius: 0 0 10px 10px;
+    color: white;
+}
+
+.PMControl {
+    width: 5%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    height: 30%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+
+.themeSubj {
+    background-color: #2222224d;
+    border-radius: 15px 15px 0 0;
+    width: 30%;
+    text-align: center;
+}
+
+.themeContent {
+    background-color: #2222224d;
+    border-radius: 0 0 15px 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.themeText {
+    width: 70%;
+    display: inline-block;
+    white-space: pre-wrap;
+}
+
+.themeControl {
+    margin: 5px;
+    text-align: right;
+    width: 28%;
+    display: inline-block;
+}
+
+.error {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 50px;
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.19);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: red;
+}
+
+
+.btn-circle {
+    width: 49px;
+    height: 49px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 20px;
+    line-height: 2.00;
+    border-radius: 30px;
+}
+
+.btn-circle-micro {
+    width: 19px;
+    height: 19px;
+    text-align: center;
+    padding: 1px 0;
+    font-size: 13px;
+    line-height: 0.1;
+    border-radius: 30px;
+}
+
+.btn-circle-sm {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 2px 0;
+    font-size: 20px;
+    line-height: 1.65;
+    border-radius: 30px;
+}
+
+.btn-circle-lg {
+    width: 79px;
+    height: 79px;
+    text-align: center;
+    padding: 13px 0;
+    font-size: 30px;
+    line-height: 2.00;
+    border-radius: 70px;
+}
+
+#search {
+    width: 10%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.clear a:hover {
+    text-decoration: none;
+}
+
+.CloseTheme {
+    max-width: 80px;
+}
+

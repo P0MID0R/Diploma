@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diplom.RouteConfig">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.MvcApplication">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.App_Start.Startup">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.AddThemetoStudent">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\AddThemetoStudent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.Files">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAJAAABAAAA=</HashCode>
+      <FileName>Models\DB\Files.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.PrintModel">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgYAECABAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\PrintModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.Settings">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAggAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.teachersStat">
+    <Position X="9.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.studentsStat">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAwAAAAAIAAAAAAAAQ=</HashCode>
+      <FileName>Models\DB\Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DB.themeStat">
+    <Position X="1" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAAQIAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\Stat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DbContext">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAgAwAAAIA=</HashCode>
+      <FileName>Models\DB\DbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.DbInitializer">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\DbInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Message">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQAAAAgIBAAAAQAAAAACCAAAAA=</HashCode>
+      <FileName>Models\DB\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.News">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQAAAAAAAAAAAQAAAAACCAAAAA=</HashCode>
+      <FileName>Models\DB\News.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Student">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAQAAAAAAQAFAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Teacher">
+    <Position X="1" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAIAAAAQAFAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DB\Teacher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Theme">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAIIAAIAACAAAAAAAAAAAAQAAACACAAA=</HashCode>
+      <FileName>Models\DB\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.ApplicationContext">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.ApplicationUserManager">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ApplicationManagers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.ApplicationRoleManager">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ApplicationManagers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.ApplicationRole">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ApplicationRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.ApplicationUser">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAQAAAAAAAQAFQAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.LoginModel">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Users\LoginModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.RegistrationModelStudent">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAQAlAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\RegistrationModelStudent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.RegistrationModelTeacher">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAIAgAAQAlAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\RegistrationModelTeacher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Users.UsersInitializer">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\UsersInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

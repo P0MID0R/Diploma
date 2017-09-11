@@ -1,0 +1,32 @@
+﻿@model PagedList.IPagedList<Diplom.Models.News>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>Результат: + @ViewBag.searchString</title>
+</head>
+
+<div class="mainBody">
+    <h4>Результат поиска по "@ViewBag.searchString"</h4>
+    <div id="newsUp">
+
+        @foreach (var news in Model)
+        {
+            <a style="text-decoration: none; color:black" href="@Url.Action("News", new { page = news.Id })">
+                <div class="news">
+                    <div class="newsTopic">@Html.DisplayFor(modelItem => news.Topic)</div>
+                    <div class="newsDate">@Html.DisplayFor(modelItem => news.Created)</div>
+                    <div class="newsText">@Html.DisplayFor(modelItem => news.Text)</div>
+                </div>
+            </a>
+        }
+        <script type="text/javascript">
+            change("newsText", 200)
+        </script>
+    </div>
+    @if (!(ViewBag.listCount <= 10))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("Main", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+
+</div>

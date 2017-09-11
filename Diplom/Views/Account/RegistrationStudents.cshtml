@@ -1,0 +1,87 @@
+﻿@model Diplom.Models.Users.RegistrationModelStudent
+
+@using (Html.BeginForm("RegistrationStudents", "Account"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="login">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="login_field">
+            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Логин" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="login_field">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", @pattern = "[^ @]*@[^ @]*", @placeholder = "Почта" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="login_field">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Пароль" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="login_field">
+            @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control", @placeholder = "Подтвердите пароль" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="login_field">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ваше имя" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="login_field">
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ваша фамилия" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="login_field">
+            @Html.EditorFor(model => model.Middlename, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ваше отчество" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Middlename, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="login_field">
+            @Html.EditorFor(model => model.Group, new { htmlAttributes = new { @class = "form-control", @placeholder = "Группа" } })
+            <div class="error_field">
+                @Html.ValidationMessageFor(model => model.Group, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="group-btn">
+                <input type="submit" value="Регистрация" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $('#Password').keyup(function (e) {
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (false == enoughRegex.test($(this).val())) {
+            $('#passstrength').html('Минимум 6 символов!');
+        } else if (strongRegex.test($(this).val())) {
+            $('#passstrength').className = 'ok';
+            $('#passstrength').html('Надежный!');
+        } else if (mediumRegex.test($(this).val())) {
+            $('#passstrength').className = 'alert';
+            $('#passstrength').html('Нормальный!');
+        } else {
+            $('#passstrength').className = 'error';
+            $('#passstrength').html('Слабый!');
+        }
+        return true;
+    });
+</script>

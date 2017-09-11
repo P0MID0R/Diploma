@@ -1,0 +1,43 @@
+﻿@model Diplom.Models.Theme
+
+@{
+    ViewBag.Title = Model.Topic;
+}
+
+<head>
+    <title>@Model.Topic</title>
+    <script src="~/Scripts/AutoUpdate.js"></script>
+</head>
+
+
+
+<div class="mainBody">
+    <h4 id="tooltip">@Html.DisplayFor(model => model.Type) на тему "@Html.DisplayFor(model => model.Topic)"</h4>
+
+    <div class="themeSubj">
+        Предмет: @Html.DisplayFor(model => model.Subject)
+    </div>
+    <div class="themeContent">
+        <div class="themeText">@Html.DisplayFor(model => model.Description)</div>
+        <div class="themeControl">
+            <a class="btn btn-default" href="@Url.Action("EditTheme","Home", new { id = Model.Id })" data-toggle="tooltip" data-placement="top" title="Изменить">
+                <span class="glyphicon glyphicon-pencil">
+                </span>
+            </a>
+            <a class="btn btn-default" href="@Url.Action("RemoveStudent","Home", new { id = Model.Id })" data-toggle="tooltip" data-placement="top" title="Убрать студента">
+                <span class="glyphicon glyphicon-user">
+                </span>
+            </a>
+            <a class="btn btn-default" href="@Url.Action("DeleteTheme","Home", new { id = Model.Id })" data-toggle="tooltip" data-placement="top" title="Удалить">
+                <span class="glyphicon glyphicon-remove">
+                </span>
+            </a>
+            <a class="btn btn-default" href="@Url.Action("ThemeList","Home")" data-toggle="tooltip" data-placement="top" title="К списку">
+                <span class="glyphicon glyphicon-th-list">
+                </span>
+            </a>           
+        </div>
+    </div>
+
+</div>
+

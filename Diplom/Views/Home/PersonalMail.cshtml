@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Message>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Сообщения";
+}
+<script src="~/scripts/AutoUpdate.js"></script>
+<div class="mainBody">
+    <h4>Личные сообщения</h4>
+    <div id="addMessage">
+        <span class="btn-group">
+            <a class="btn btn-default" href="@Url.Action("AddMail","Home")" data-toggle="tooltip" data-placement="top" title="Создать сообщение">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+            @if (ViewBag.GetTheme)
+            {
+                <a class="btn btn-default" href="@Url.Action("MesstoTeacher", "Home")" data-toggle="tooltip" data-placement="top" title="Написать руководителю">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            }
+        </span>
+
+    </div>
+    <div id="mail">
+        @foreach (var item in Model)
+            {
+                if (!item.Read.Split(',').Contains(User.Identity.Name))
+                {
+
+                <div class="PMR">
+                    <div class="PMBody">
+                        <a style="text-decoration: none; color:black" href="@Url.Action("Mail","Home", new { page = item.Id })">
+                            <div>
+                                <span class="PMTopic">@Html.DisplayFor(modelItem => item.Topic)</span>
+                                <span class="PMFUser">(@Html.DisplayFor(modelItem => item.FromUser))</span>
+                                <span class="glyphicon glyphicon-info-sign" style="color:rgb(255, 78, 0);"></span>
+                                <div class="PMText">
+                                    @if (item.Text.Length >= 80)
+                                    {
+                                        item.Text = item.Text.Remove(80);
+                                        item.Text += "...";
+                                        @item.Text;
+                                    }
+                                    else
+                                    {
+                                        @item.Text;
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="PMControl">
+                        <a class="btn btn-circle-sm btn-default" href="@Url.Action("DeleteMail","HOme", new { id = item.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="PM">
+                    <div class="PMBody">
+                        <a style="text-decoration: none; color:black" href="@Url.Action("Mail","Home", new { page = item.Id })">
+                            <div>
+                                <span class="PMTopic">@Html.DisplayFor(modelItem => item.Topic)</span>
+                                <span class="PMFUser">(@Html.DisplayFor(modelItem => item.FromUser))</span>
+                                <div class="PMText">
+                                    @if (item.Text.Length >= 80)
+                                    {
+                                        item.Text = item.Text.Remove(80);
+                                        item.Text += "...";
+                                        @item.Text;
+                                    }
+                                    else
+                                    {
+                                        @item.Text;
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="PMControl">
+                        <a class="btn btn-circle-sm btn-default" href="@Url.Action("DeleteMail","HOme", new { id = item.Id })"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+    @if (!(ViewBag.listCount <= 20))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("Main", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>
+<script>
+    reload("#mail", 5);
+</script>

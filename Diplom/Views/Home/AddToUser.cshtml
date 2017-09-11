@@ -1,0 +1,36 @@
+﻿@model Diplom.Models.DB.AddThemetoStudent
+
+@{
+    ViewBag.Title = "Назначение темы";
+}
+
+<div class="login">
+    <h4>Назначить тему пользователю</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <table class="table">
+            <tr>
+                <th>Студент</th>
+                <th>Руководитель</th>
+                <th>Тема</th>
+                <th></th>
+            </tr>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <tr style="padding: 10px">
+                    <td>@Html.DropDownList("Student", ViewBag.Students as SelectList)</td>
+                    <td>@Html.DropDownList("Teacher", ViewBag.Teachers as SelectList)</td>
+                    <td>@Html.DropDownList("Theme", ViewBag.Themes as SelectList)</td>
+                    <td><input type="submit" class="btn btn-default" value="Сохранить" /></td>
+                </tr>
+
+
+            }
+
+        </table>
+    }
+</div>

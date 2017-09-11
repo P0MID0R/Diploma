@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diplom.Controllers.AccountController">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAACAQAAAAAAAAAAIAAAQCAAKAAIAQAQAEAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Controllers.HomeController">
+    <Position X="1.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gBECEIKgAgQQAAAZAACAAAAQAAAAAAQYgQEARQSgACg=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.App.AlertSender">
+    <Position X="4.25" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACQBAQAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\App\AlertSender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplom.Models.App.AlertSheduler">
+    <Position X="4.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\App\AlertSheduler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

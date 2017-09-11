@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "Статистика";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/chartist.css">
+    <link rel="stylesheet" href="~/Content/chartist.css.map">
+    <script src="~/scripts/loader.js"></script>
+</head>
+
+
+
+<input type="hidden" value="@ViewBag.groupList" id="groupList" />
+<input type="hidden" value="@ViewBag.groupListJSON" id="groupListJSON" />
+<input type="hidden" value="@ViewBag.studentsStar" id="studentsStar" />
+<input type="hidden" value="@ViewBag.teacherStat" id="teacherStat" />
+<input type="hidden" value="@ViewBag.themeStat" id="themeStatData" />
+<input type="hidden" value="@ViewBag.CompletedThemes" id="CompletedThemes" />
+<input type="hidden" value="@ViewBag.ThemeCount" id="ThemeCount" />
+<input type="hidden" value="@ViewBag.markStat" id="markStat" />
+
+<div class="mainBody">
+    <h4>
+        <div class="btnStat">
+            <div id="myTab" class="btn-group">
+                <button id="chengeBtn" class="btn btn">Все</button>
+                <button class="btn btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu pull-right" data-toggle="tooltip" data-placement="bottom" title="Показать список">
+                    @foreach (var i in ViewBag.groupList)
+                    {
+                if (i == "All")
+                {
+                            <li><a href="#@i">Все</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#@i">@i</a></li>
+                        }
+                    }
+                </ul>
+                <button id="reloadStats" class="btn btn" data-toggle="tooltip" data-placement="bottom" title="Обновить статистику"><i class="glyphicon glyphicon-refresh"></i></button>
+            </div>
+        </div>
+    </h4>
+
+    <div class="flex_container">
+        <div class="flex_block">
+            <div id="studentStat" class="pie"></div>
+        </div>
+
+
+        <div class="flex_block">
+            <div id="themeStat" class="pie"></div>
+        </div>
+        <div class="flex_block">
+            <div id="teachersStat" class="pie"></div>
+        </div>
+    </div>
+    <div>
+        <div id="chart_div"  style="width: 90%; margin: 0 auto"></div>
+    </div>
+</div>
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart1);
+    google.charts.setOnLoadCallback(drawChart2);
+    google.charts.setOnLoadCallback(drawChart3);
+    google.charts.setOnLoadCallback(drawMarkStat);
+    var chengeBtn = document.getElementById('chengeBtn');
+    var groupListJSON = JSON.parse(document.getElementById('groupListJSON').value);
+    var studentsStar = JSON.parse(document.getElementById('studentsStar').value);
+    var studInfo = "Статистика по всем студентам";
+    var allstudent = studentsStar[0].All;
+    var takenStudent = studentsStar[0].Taken;
+    var themeStatData = JSON.parse(document.getElementById('themeStatData').value);
+    var themeInfo = "Статистика по защите";
+    var allThemes = themeStatData[0].All;
+    var complenedThemes = themeStatData[0].Completed;
+    var teacherStat = JSON.parse(document.getElementById('teacherStat').value);
+    var CompletedThemes = parseInt(document.getElementById('CompletedThemes').value);
+    var ThemeCount = parseInt(document.getElementById('ThemeCount').value);
+    var markStat = JSON.parse(document.getElementById('markStat').value);
+    var temp = [];
+    temp.push(['Имя', 'Число тем']);
+
+    for (var i = 0; i < teacherStat.length; i++) {
+        temp.push([teacherStat[i].Teacher, teacherStat[i].Themes]); //{ 0: teacherStat[i].Teacher, 1: teacherStat[i].Themes,length: 2 });
+    }
+
+    $(document).ready(function () {
+
+
+        $("#chengeBtn").click(function (e) {
+            var url = 'StudentsList?rule=' + e.currentTarget.innerHTML;
+            window.location.href = url;
+        });
+
+        $("#reloadStats").click(function () {
+            location.reload(); 
+        }
+        );
+
+        $("#myTab a").click(function (e) {
+            e.preventDefault();
+            if (e.currentTarget.innerHTML != "                    Группа                    <b class='caret'></b>                ") {
+                for (var i = 0; i < studentsStar.length; i++) {
+                    if (e.currentTarget.innerHTML == studentsStar[i].Group) {
+                        studInfo = 'Статистика гр. ' + studentsStar[i].Group;
+                        allstudent = studentsStar[i].All;
+                        takenStudent = studentsStar[i].Taken;
+                        chengeBtn.innerHTML = studentsStar[i].Group;
+
+                        drawChart1()
+
+                        themeInfo = 'Защита гр. ' + studentsStar[i].Group;
+                        allThemes = themeStatData[i].All;
+                        complenedThemes = themeStatData[i].Completed;
+                        if (themeStatData[i].All > 0) {
+                            document.getElementById('themeStat').innerHTML = "";
+                            document.getElementById('themeStat').style.paddingTop = "0";
+                            document.getElementById('themeStat').style.color = "white";
+                            drawChart3();
+                        }
+                        else {
+                            document.getElementById('themeStat').innerHTML = "Нет данных!";
+                            document.getElementById('themeStat').style.paddingTop = "40%";
+                            document.getElementById('themeStat').style.color = "#000";
+                        }
+
+                        break;
+                    }
+                    if (e.currentTarget.innerHTML == "Все") {
+                        studInfo = "Статистика по всем студентам";
+                        allstudent = studentsStar[0].All;
+                        takenStudent = studentsStar[0].Taken;
+                        chengeBtn.innerHTML = "Все";
+
+                        themeInfo = "Статистика по защите";
+                        allThemes = themeStatData[0].All;
+                        complenedThemes = themeStatData[0].Completed;
+
+                        document.getElementById('themeStat').innerHTML = "";
+                        document.getElementById('themeStat').style.paddingTop = "0";
+                        document.getElementById('themeStat').style.color = "white";
+
+                        drawChart1()
+                        drawChart3()
+                        break;
+                    }
+                }
+
+            }
+        });
+    });
+
+    function drawChart1() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Студенты', 'Число'],
+          ['С темами', takenStudent],
+          ['Без тем', allstudent - takenStudent],
+        ]);
+
+        var options = {
+            title: studInfo,
+            legend: { position: 'none' },
+            pieSliceText: 'label',
+            is3D: true,
+            backgroundColor: '#e3e3e3'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('studentStat'));
+        chart.draw(data, options);
+    }
+
+    function drawChart2() {
+
+        var data = google.visualization.arrayToDataTable(temp);
+
+        var options = {
+            title: 'Статистика по руководителям',
+            legend: { position: 'none' },
+            pieSliceText: 'value',
+            pieStartAngle: 0,
+            is3D: true,
+            backgroundColor: '#e3e3e3'          
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('teachersStat'));
+        chart.draw(data, options);
+    }
+
+    function drawChart3() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Темы', 'Число'],
+          ['Сданы', complenedThemes],
+          ['Не сданы', allThemes - complenedThemes],
+        ]);
+
+        var options = {
+            title: themeInfo,
+            legend: { position: 'none' },
+            pieSliceText: 'label',
+            is3D: true,
+            backgroundColor: '#e3e3e3'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('themeStat'));
+        chart.draw(data, options);
+    }
+
+    function drawMarkStat() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Оценка');
+        data.addColumn('number', 'Число оценок');
+
+        data.addRows([
+          [{ v: 1, f: '1' }, markStat[0].Count],
+          [{ v: 2, f: '2' }, markStat[1].Count],
+          [{ v: 3, f: '3' }, markStat[2].Count],
+          [{ v: 4, f: '4' }, markStat[3].Count],
+          [{ v: 5, f: '5' }, markStat[4].Count],
+          [{ v: 6, f: '6' }, markStat[5].Count],
+          [{ v: 7, f: '7' }, markStat[6].Count],
+          [{ v: 8, f: '8' }, markStat[7].Count],
+          [{ v: 9, f: '9' }, markStat[8].Count],
+          [{ v: 10, f: '10' }, markStat[9].Count],
+        ]);
+
+        var options = {
+            title: 'Список оценок',
+            hAxis: {
+                title: 'Оценка',
+                viewWindow: {
+                    min: [7, 30, 0],
+                    max: [17, 30, 0]
+                }
+            },
+            vAxis: {
+                title: 'Число оценок'
+            },
+            backgroundColor: '#e3e3e3'
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+
+</script>

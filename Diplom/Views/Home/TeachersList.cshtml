@@ -1,0 +1,43 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Teacher>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Руководители";
+}
+
+
+
+<div class="mainBody">
+    <h4>Список преподавателей</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Ф.И.О.
+            </th>         
+            <th>
+                Предмет
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Middlename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Изменить", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+
+    @if (!(ViewBag.listCount <= 15))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("TeachersList", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>

@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Users.ApplicationUser>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Аккаунты";
+}
+
+<div class="mainBody">
+    <h4>Аккаунты</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Логин
+            </th>
+            <th>
+                Почта
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Отчество
+            </th>
+            <th>
+                Группа/Предмет
+            </th>
+            <th>
+                Регистрации
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Type == "Teacher" || item.Type == "Admin")
+            {
+                <tr style="background-color: rgba(112, 221, 36, 0.3)">
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Surname
+                    </td>
+                    <td>
+                        @item.Middlename
+                    </td>
+                    <td>
+                        @item.Group
+                    </td>
+                    <td>
+                        @item.RegistrationDate.Remove(10)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Banned)
+                    </td>
+                    <td>
+                        <span class="btn btn-default">@Html.ActionLink(" ", "DeleteAccount", new { Login = item.UserName }, new { @class = "glyphicon glyphicon-remove" })</span>
+                    </td>
+                </tr>
+            }
+            if (item.Type == "Student")
+            {
+                <tr style="background-color: rgba(98, 95, 231, 0.3)">
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Surname
+                    </td>
+                    <td>
+                        @item.Middlename
+                    </td>
+                    <td>
+                        @item.Group
+                    </td>
+                    <td>
+                        @item.RegistrationDate.Remove(10)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Banned)
+                    </td>
+                    <td>
+                        <span class="btn btn-default">@Html.ActionLink(" ", "DeleteAccount", new { Login = item.UserName }, new { @class = "glyphicon glyphicon-remove" })</span>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    @if (!(ViewBag.listCount <= 10))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("Accounts", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>

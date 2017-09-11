@@ -1,0 +1,86 @@
+﻿@model Diplom.Models.Message
+
+@{
+    ViewBag.Title = "AddMail";
+}
+
+<head>
+    <title>Создать сообщение</title>
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <link href="~/scripts/chosen/chosen.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="mainBody">
+    <h4>Создать сообщение</h4>
+    @using (Html.BeginForm(Html.BeginForm("AddMail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.FromUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @User.Identity.Name
+                    @*@Html.EditorFor(model => model.FromUser, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FromUser, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToUsers, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="selectList">
+                        @*@Html.DropDownList("ToUsersList", new MultiSelectList(ViewBag.Users.Items), new { multiple = "multiple", @id = "multi" })*@
+                        @Html.ListBoxFor(m => m.ToUsersList, new SelectList(ViewBag.Users.Items), new { @class = "chosen-select", data_placeholder = "Выберите пользователей", style = "width:750px;", tabindex = "4" })
+                    </div>
+                    @*@Html.EditorFor(model => model.ToUsers, new { htmlAttributes = new { @class = "form-control", @value = User.Identity.Name } })
+                        @Html.ValidationMessageFor(model => model.ToUsers, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Topic, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Topic, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Topic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FilesUpload, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" class="btn btn-default" name="FilesUpload" multiple />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Отправить" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/scripts/chosen/chosen.jquery.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 10 },
+                '.chosen-select-no-results': { no_results_text: 'Пусто' },
+                '.chosen-select-width': { width: "95%" }
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+</script>

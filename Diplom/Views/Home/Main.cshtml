@@ -1,0 +1,54 @@
+﻿
+@model PagedList.IPagedList<Diplom.Models.News>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "Главная";
+}
+
+
+<head>
+    <title>Главная</title>
+</head>
+
+<div class="mainBody">
+    <div id="newsUp">
+        @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+        {
+            <a style="text-decoration: none" href='@Url.Action("AddNews", "Home")'><div class="addNews">Добавить запись</div></a>
+        }
+
+        @foreach (var news in Model)
+        {
+            <a style="text-decoration: none; color:black" href="@Url.Action("News", new { page = news.Id })">
+                <div class="news">
+                    <div class="newsTopic">@Html.DisplayFor(modelItem => news.Topic)</div>
+                    <div class="newsDate">@Html.DisplayFor(modelItem => news.Created)</div>
+                    <div class="newsText">
+                        @if (news.Text.Length > 220)
+                        {
+                            news.Text = news.Text.Remove(220);
+                            news.Text += "...";
+                            @news.Text;
+                        }
+                        else
+                        {
+                            @news.Text;
+                        }
+                        
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+    @if (!(ViewBag.listCount <= 10))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("Main", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>
+
+<script>
+    reload("#newsUp", 5);
+</script>

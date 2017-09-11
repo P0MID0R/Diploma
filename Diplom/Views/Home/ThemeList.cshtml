@@ -1,0 +1,131 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Theme>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Темы";
+}
+
+
+<div class="mainBody">
+    <h4>Список тем</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Тип
+            </th>
+            <th>
+                Предмет
+            </th>
+            <th>
+                Тема
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Руководитель
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.StudentID < 0)
+            {
+                <tr>
+                    @*background-color: rgba(255,0,0,0.3);*@
+                    <td>
+                        @item.Type
+                    </td>
+                    <td  class="subj">
+                        @item.Subject
+                    </td>
+                    <td class="topic">
+                        @item.Topic
+                    </td>
+                    <td class="desc">
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @Html.ActionLink("Подробно", "Theme", new { page = item.Id }, new { @class = "btn btn-default" })
+                    </td>
+                    <td>
+                        <div class="btn btn-default">
+                            @Html.ActionLink(" ", "DeleteTheme", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove" })
+                        </div>
+                    </td>
+                </tr>
+            }
+
+            if (item.StudentID >= 0)
+            {
+                <tr style="background-color: rgba(255,0,0,0.3);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td class="subj">
+                        @item.Subject
+                    </td>
+                    <td class="topic">
+                        @item.Topic
+                    </td>
+                    <td class="desc">
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @Html.ActionLink("Подробно", "Theme", new { page = item.Id }, new { @class = "btn btn-default" })
+                    </td>
+                    <td>
+                        <div class="btn btn-default">
+                            @Html.ActionLink(" ", "DeleteTheme", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove" })
+                        </div>
+                    </td>
+                </tr>
+            }
+            <script type="text/javascript">
+                change("subj", 40);
+                change("topic", 40);
+                change("desc", 40)
+            </script>
+        }
+
+        @using (Html.BeginForm())
+        {
+            <tr>
+                <th>
+                    @*@Html.TextBox("Theme.Type", User.Identity.Name, new { @required = "required" })*@
+                    @Html.DropDownList("Theme.Type", new MultiSelectList(new List<string> { "Курсовая", "Диплом" }), new { @required = "required", @class = "form-control" })
+                </th>
+                <th>
+                    @*@Html.TextBox("Theme.Subject", User.Identity.Name, new { @required = "required" })*@
+                    @Html.DropDownList("Theme.Subject", new MultiSelectList(ViewBag.Subjects), new { @required = "required", @class = "form-control" })
+                </th>
+                <th>
+                    @Html.TextBox("Theme.Topic", User.Identity.Name, new { @required = "required", @class = "form-control" })
+                </th>
+                <th>
+                    @Html.TextBox("Theme.Description", User.Identity.Name, new { @required = "required", @class = "form-control" })
+                </th>
+                <th>
+                    @*@Html.TextBox("Theme.Subject", User.Identity.Name, new { @required = "required" })*@
+                    @Html.DropDownList("Theme.FullName", new MultiSelectList(ViewBag.Teachers), new { @required = "required", @class = "form-control" })
+                </th>
+                <th><p><input type="submit" value="Добавить" class="btn btn-default" /></p></th>
+            </tr>
+        }
+
+    </table>
+
+
+
+    @if (!(ViewBag.listCount <= 20))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("ThemeList", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>

@@ -1,0 +1,126 @@
+﻿@model Diplom.Models.Users.ApplicationUser
+
+@{
+    ViewBag.Title = Model.UserName;
+}
+
+
+
+
+<div class="ProfileData">
+    <h4>Профиль пользователя "@Model.UserName"</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            Почта:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Логин:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        @if (!User.IsInRole("Admin"))
+        {
+            <dt>
+                Имя:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Фамилия:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+
+            <dt>
+                Отчество:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Middlename)
+            </dd>
+        }
+
+        @if (Model.Type == "Student")
+        {
+            <dt>
+                Группа:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group)
+            </dd>
+        }
+        else
+        if (Model.Type == "Teacher")
+        {
+            <dt>
+                Предмет:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group)
+            </dd>
+        }
+        else
+        {
+        }
+
+        <dt>
+            Регистрации:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationDate)
+        </dd>
+        @if (!(User.IsInRole("Admin") || User.IsInRole("Teacher")))
+        {
+            <dt>
+                Тема
+            </dt>
+            if (ViewBag.Complited)
+            {
+                <dd style="color: #08aa21;" data-toggle="tooltip" data-placement="left" title="Тема сдана!">
+                    @ViewBag.Theme <span class="glyphicon glyphicon-ok"></span>
+                </dd>
+            }
+            else
+            {
+                <dd style="color: #bd0000;" data-toggle="tooltip" data-placement="left" title="Тема не сдана!">
+                    @ViewBag.Theme <span class="glyphicon glyphicon-remove"></span>
+                </dd>
+            }
+            <dt>
+                Руководитель
+            </dt>
+
+            <dd>
+                @ViewBag.Teacher
+            </dd>
+        }
+    </dl>
+        @if (User.IsInRole("User"))
+        {
+            <span class="glyphicon glyphicon-print"></span> @Html.ActionLink("Скачать титульник", "PrintDoc", "Home")
+            if (((int)Char.GetNumericValue(DateTime.Now.Year.ToString()[3]) - (int)Char.GetNumericValue(Model.Group.ToString()[Model.Group.ToString().Length - 1])) < 5)
+            {
+                <span> | </span>
+                @Html.ActionLink("Печать", "ViewDoc", "Home")
+            }
+            else
+            {
+                <span> (Укажите руководитлей в листе)</span>
+            }
+        }
+</div>
+

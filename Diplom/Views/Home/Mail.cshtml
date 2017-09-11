@@ -1,0 +1,47 @@
+﻿@model Diplom.Models.Message
+
+@{
+    ViewBag.Title = "Сообщение";
+}
+
+
+
+
+
+<div class="mailBody">
+    <h3>@Model.Topic</h3>
+    <div class="mailUser">Автор: @ViewBag.FromUser (Получен: @Model.Created.ToString())</div>
+    <div class="mailText">
+        @Model.Text
+        <hr class="half-rule" />
+        @if (ViewBag.FilesCount > 0 && ViewBag.FilesCount != null)
+        {
+            <div class="mailFiles">
+                @foreach (var file in ViewBag.Files)
+                {
+                    if (file.FileName.Split('.')[1] == "png" || file.FileName.Split('.')[1] == "jpg" || file.FileName.Split('.')[1] == "jpeg" || file.FileName.Split('.')[1] == "bmp")
+                    {
+                        <a style="text-decoration: none; color:white" href="@Url.Action("Download", new { FileName = file.FileName, FilePath = file.FilePath })"><span class="glyphicon glyphicon-picture"></span> @file.FileName </a>
+                    }
+                    else
+                    {
+                        <a style="text-decoration: none; color:white" href="@Url.Action("Download", new { FileName = file.FileName, FilePath = file.FilePath })"><span class="glyphicon glyphicon-file"></span> @file.FileName </a>
+                    }
+                }
+            </div>
+        }
+    </div>
+    <div class="mailCintrol">
+        <a style="text-decoration: none" href="@Url.Action("PersonalMail","Home")">
+            <span class="btn btn-default">
+                Назад
+            </span>
+        </a>
+        <a style="text-decoration: none" href="@Url.Action("Reply","Home", new { topic = Model.Topic, toUser = Model.FromUser })">
+            <span class="btn btn-default">
+                Ответить
+            </span>
+        </a>
+    </div>
+</div>
+

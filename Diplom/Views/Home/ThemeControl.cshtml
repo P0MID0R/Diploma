@@ -1,0 +1,119 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Theme>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Закрытие тем";
+}
+
+<div class="mainBody">
+    <h4>Управление темами</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Тип
+            </th>
+            <th>
+                предмет
+            </th>
+            <th>
+                Тема
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Управление
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.StudentID < 0)
+            {
+                <tr style="background-color: rgba(89, 89, 89, 0.3); opacity: 0.6;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="CloseTheme">
+                        <span class="glyphicon glyphicon-ban-circle"></span>
+                    </td>
+                </tr>
+            }
+            else
+        if (!item.Completed)
+            {
+                <tr style="background-color: rgba(255, 0, 0, 0.3);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="CloseTheme">
+                        @using (Html.BeginForm("CloseTheme", "Home", FormMethod.Get, new { @class = "form-group", @style = "margin-bottom: 0px;" }))
+                        {
+                            <input name="id" value="@item.Id" type="hidden" />
+                            <select class="form-control" id="exampleSelect1" name="mark" style = "max-width: 40%; float: left">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            <button type="submit" class="btn btn-default">
+                                Закрыть
+                            </button>
+                        }                                           
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr style="background-color: rgba(30, 216, 38, 0.3);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="CloseTheme">
+                        @Html.ActionLink("Открыть", "OpenTheme", new { id = item.Id }, new { @style = "text-decoration: none; color: black", @class="btn btn-default" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+
+    @if (!(ViewBag.listCount <= 20))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("ThemeList", new { page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+</div>

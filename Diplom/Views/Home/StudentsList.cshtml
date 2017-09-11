@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<Diplom.Models.Student>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Список студентов";
+}
+
+<head>
+    <script src="~/scripts/jquery-2.2.3.js"></script>
+</head>
+
+
+
+<input type="hidden" value="@ViewBag.Rule" id="Rule" />
+<div class="mainBody">
+    <h4>Студенты</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Ф.И.О.
+            </th>
+            
+            
+            <th>
+                Тема
+            </th>
+            <th>
+                @Html.DropDownList("rule", new SelectList(ViewBag.Groups.Items), new { @onChange = "changeGroup(this)", @class = "form-control" })
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Got)
+            {
+                <tr style="background-color: rgba(30, 216, 38, 0.3);">
+                    <td>
+                       @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Middlename)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Theme)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Group)
+                    </td>                    
+                </tr>
+            }
+            else
+            {
+                <tr style="background-color: rgba(255, 0, 0, 0.3);">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Middlename)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Theme)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Group)
+                    </td>               
+                </tr>
+            }
+
+        }
+
+    </table>
+
+    @if (!(ViewBag.listCount <= 15))
+    {
+        <div style="text-align: center">@Html.PagedListPager(Model, page => Url.Action("StudentsList", new { page, ViewBag.Rule }), PagedListRenderOptions.OnlyShowFivePagesAtATime)</div>
+    }
+
+    <script type='text/javascript'>
+        function changeGroup(a) {
+            a.value;
+            var Rule = document.getElementById('Rule').value;
+            var url = 'StudentsList?rule=' + a.value;
+            window.location.href = url;
+        }
+    </script>
+</div>

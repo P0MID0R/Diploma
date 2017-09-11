@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Регистрация";
+}
+<head>
+    <title>Регистрация</title>
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+</head>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+}
+
+<div class="login">
+    <h4>Регистрация</h4>
+    <div class="chooseReg">
+        <div id="Stud">Студент</div>
+        <div id="Teach">Преподаватель</div>
+    </div>
+
+    <div id="StudReg">@Html.Partial("RegistrationStudents")</div>
+
+    <div id="TeachReg">@Html.Partial("RegistrationTeachers")</div>
+</div>
+<script language="JavaScript" type="text/javascript">
+
+    var but1 = document.getElementById("Stud");
+    var but2 = document.getElementById("Teach");
+    var div1 = document.getElementById("StudReg");
+    var div2 = document.getElementById("TeachReg");
+    var check = true;
+    div2.style.display = "none";
+    but2.style.opacity = 0.3;
+
+    but1.onclick = function () {
+        if (div2.style.display = "none") {
+            div2.style.display = "none";
+            div1.style.display = "";
+            but1.style.opacity = 1;
+            but2.style.opacity = 0.3;
+        }
+
+    };
+
+    but2.onclick = function () {
+        if (div1.style.display = "none") {
+            div1.style.display = "none";
+            div2.style.display = "";
+            but1.style.opacity = 0.3;
+            but2.style.opacity = 1;
+
+        }
+
+    };
+
+</script>
+
+<script type="text/javascript">
+    $('#Password').keyup(function (e) {
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+        if (false == enoughRegex.test($(this).val())) {
+            $('#passstrength').html('Минимум 6 символов!');
+        } else if (strongRegex.test($(this).val())) {
+            $('#passstrength').className = 'ok';
+            $('#passstrength').html('Надежный!');
+        } else if (mediumRegex.test($(this).val())) {
+            $('#passstrength').className = 'alert';
+            $('#passstrength').html('Нормальный!');
+        } else {
+            $('#passstrength').className = 'error';
+            $('#passstrength').html('Слабый!');
+        }
+        return true;
+    });
+</script>
