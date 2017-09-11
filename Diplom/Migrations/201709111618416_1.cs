@@ -3,16 +3,16 @@ namespace Diplom.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _20 : DbMigration
+    public partial class _1 : DbMigration
     {
         public override void Up()
         {
-            DropColumn("dbo.Themes", "Mark");
+            AddColumn("dbo.Themes", "Mark", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Themes", "Mark", c => c.Int(nullable: false));
+            DropColumn("dbo.Themes", "Mark");
         }
     }
 }
